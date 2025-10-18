@@ -9,7 +9,15 @@
 <body>
     <div class="container">
         <header>
-            <h1>Мой Сайт</h1>
+            <div class="header-top">
+                <h1>Мой Сайт</h1>
+                <div class="theme-switcher">
+                    <button id="themeToggle" class="theme-btn">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-text">Темная тема</span>
+                    </button>
+                </div>
+            </div>
             <p class="header-info"><strong>Приветствую!</strong></p>
             <p class="header-info">Это мой первый сайт!</p>
         </header>
@@ -17,12 +25,8 @@
         <section>
             <h2>Новости</h2>
             <ul>
-                <li>Обязательно позже бужут новости</li>
+                <li>Обязательно позже будут новости</li>
             </ul>
-        </section>
-        
-        <hr>
-        <section>
             <h3>Записи</h3>
             <table>
                 <tr>
@@ -39,8 +43,47 @@
         </section>
         
         <footer>
-            <p>©2025 Мой сайт.Все права защищены.</p>
+            <p>©2025 Мой сайт. Все права защищены.</p>
         </footer>
     </div>
+    
+    <script>
+        // Функция для переключения темы
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeToggle');
+            const themeIcon = themeBtn.querySelector('.theme-icon');
+            const themeText = themeBtn.querySelector('.theme-text');
+            
+            if (body.classList.contains('light-theme')) {
+                // Переключаем на темную тему
+                body.classList.remove('light-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Темная тема';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Переключаем на светлую тему
+                body.classList.add('light-theme');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Светлая тема';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Загрузка сохраненной темы при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeBtn = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeBtn.querySelector('.theme-icon').textContent = '☀️';
+                themeBtn.querySelector('.theme-text').textContent = 'Светлая тема';
+            }
+            
+            // Добавляем обработчик события для кнопки переключения темы
+            themeBtn.addEventListener('click', toggleTheme);
+        });
+    </script>
 </body>
 </html>

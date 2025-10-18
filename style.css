@@ -5,10 +5,49 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Темная тема (по умолчанию) */
+:root {
+    --bg-color: #1a0d2b;
+    --text-color: #f0e6ff;
+    --header-bg: linear-gradient(135deg, #2d1b4e, #4a2a7c);
+    --header-text: #d4c4f7;
+    --header-info: #b8a2e6;
+    --section-bg: rgba(45, 27, 78, 0.7);
+    --section-border: #6a4c9c;
+    --h2-color: #c9b3f5;
+    --h3-color: #d4c4f7;
+    --bullet-color: #9370db;
+    --table-header-bg: #4a2a7c;
+    --table-header-text: #e6dcff;
+    --table-cell-bg: rgba(74, 42, 124, 0.3);
+    --hr-gradient: linear-gradient(to right, transparent, #9370db, transparent);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Светлая тема */
+body.light-theme {
+    --bg-color: #f5f0ff;
+    --text-color: #333;
+    --header-bg: linear-gradient(135deg, #7e57c2, #9575cd);
+    --header-text: #fff;
+    --header-info: #e6e6fa;
+    --section-bg: rgba(255, 255, 255, 0.9);
+    --section-border: #b39ddb;
+    --h2-color: #5e35b1;
+    --h3-color: #7e57c2;
+    --bullet-color: #7e57c2;
+    --table-header-bg: #7e57c2;
+    --table-header-text: #fff;
+    --table-cell-bg: rgba(126, 87, 194, 0.1);
+    --hr-gradient: linear-gradient(to right, transparent, #b39ddb, transparent);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 body {
-    background-color: #1a0d2b;
-    color: #f0e6ff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -18,50 +57,84 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #2d1b4e, #4a2a7c);
+    background: var(--header-bg);
     padding: 30px 0;
     border-radius: 10px;
     margin-bottom: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px var(--shadow-color);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 20px;
+}
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.theme-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: var(--header-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
 h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
-    color: #d4c4f7;
+    color: var(--header-text);
 }
 
 .header-info {
     font-size: 1.2rem;
     margin: 5px 0;
-    color: #b8a2e6;
+    color: var(--header-info);
 }
 
 hr {
     border: none;
     height: 2px;
-    background: linear-gradient(to right, transparent, #9370db, transparent);
+    background: var(--hr-gradient);
     margin: 25px 0;
 }
 
 section {
-    background: rgba(45, 27, 78, 0.7);
+    background: var(--section-bg);
     margin-bottom: 30px;
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: all 0.3s ease;
 }
 
 h2 {
-    color: #c9b3f5;
+    color: var(--h2-color);
     margin-bottom: 15px;
-    border-bottom: 2px solid #6a4c9c;
+    border-bottom: 2px solid var(--section-border);
     padding-bottom: 8px;
 }
 
 h3 {
-    color: #d4c4f7;
+    color: var(--h3-color);
     margin: 20px 0 15px;
 }
 
@@ -78,7 +151,7 @@ li {
 
 li:before {
     content: "•";
-    color: #9370db;
+    color: var(--bullet-color);
     font-size: 1.5rem;
     position: absolute;
     left: 0;
@@ -94,30 +167,37 @@ table {
 th, td {
     padding: 15px;
     text-align: center;
-    border: 1px solid #6a4c9c;
+    border: 1px solid var(--section-border);
+    transition: all 0.3s ease;
 }
 
 th {
-    background-color: #4a2a7c;
-    color: #e6dcff;
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
     font-weight: 600;
 }
 
 td {
-    background-color: rgba(74, 42, 124, 0.3);
+    background-color: var(--table-cell-bg);
 }
 
 footer {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    background: linear-gradient(135deg, #2d1b4e, #4a2a7c);
+    background: var(--header-bg);
     border-radius: 10px;
     font-size: 0.9rem;
-    color: #b8a2e6;
+    color: var(--header-info);
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
     table, thead, tbody, th, td, tr {
         display: block;
     }
@@ -130,7 +210,7 @@ footer {
     
     tr {
         margin-bottom: 15px;
-        border: 1px solid #6a4c9c;
+        border: 1px solid var(--section-border);
         border-radius: 5px;
     }
     
@@ -147,7 +227,7 @@ footer {
         padding-right: 10px;
         white-space: nowrap;
         font-weight: bold;
-        color: #c9b3f5;
+        color: var(--h2-color);
     }
     
     td:nth-of-type(1):before { content: "Услуга 1"; }
